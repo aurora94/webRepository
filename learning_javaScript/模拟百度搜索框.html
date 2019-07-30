@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+
+        #txt {
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text" id="txt" value=""/>
+        <input type="button" id="btn" value="搜索"/>
+    </div>
+    <script src="common.js"></script>
+    <script>
+        //应该来自后台
+        var keyWords = ["小杨才是最纯洁的", "小杨才是最帅的", "小段是最猥琐的", "小超是最龌龊的",
+            "传智播客是一个培训机构", "传说在传智有个很帅很纯洁的小杨", "苹果好吃", "苹果此次召回还是没有中国"];
+
+        //获取文本框，注册键盘抬起事件
+        my$("txt").onkeyup = function () {
+            //每次键盘抬起都判断页面中有没有这个div
+            if(my$("dv")){
+                //删除一次
+                my$("box").removeChild(my$("dv"));
+            }
+
+            //获取文本框内容
+            var text = this.value;
+            var tempArr = [];  // 临时数组————空数组——————>存放匹配上的数据
+            //把文本框输入的内容和数组中的每个数据对比
+            for(var i = 0; i < keyWords.length; i++) {
+                if(keyWords[i].indexOf(text) == 0) {
+                    tempArr.push(keyWords[i]);  // 追加到临时数组中
+                }
+            }
+
+            // 如果文本框空，临时数组空，不用创建div
+            if(this.value.length == 0 || tempArr.length == 0) {
+                //如果页面中有这个div，删除
+                if(my$("dv")) {
+                    my$("box").removeChild(my$("dv"));
+                }
+                return;
+            }
+            // 创建div,追加到box中
+            var dvObj = document.createElement("div");
+            my$("box").appendChild(dvObj);
+            dvObj.id = "dv";
+            dvObj.style.width="350px";
+            dvObj.style.border="1px solid green";
+
+            //循环遍历临时数组，创建对应的p标签
+            for(var i = 0; i < tempArr.length; i++) {
+                var pObj = document.createElement("p");
+                dvObj.appendChild(pObj);
+                setInnerText(pObj, tempArr[i]);
+                pObj.style.margin = 0;
+                pObj.style.padding = 0;
+                pObj.style.cursor = "pointer";
+                pObj.style.marginTop = "5px";
+                pObj.style.marginLeft = "5px";
+
+                //鼠标进入
+                pObj.onmouseover = function () {
+                    this.style.backgroundColor = "pink";
+                }
+                //鼠标离开
+                pObj.onmouseout = function () {
+                    this.style.backgroundColor = "";
+                }
+                pObj.onclick = function () {
+                    my$("txt").value = this.innerText;
+                }
+            }
+        };
+    </script>
+</body>
+</html>

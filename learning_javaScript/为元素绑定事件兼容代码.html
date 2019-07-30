@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="按钮" id="btn" />
+<script src="common.js"></script>
+<script>
+    //为任意元素绑定任意事件（任意的元素，事件的类型，事件处理函数）
+    function addEventListener(element, type, fn) {
+        //判断浏览器是否支持这种方法
+        if(element.addEventListener){
+            element.addEventListener(type,fn,false);
+        }else if(element.attachEvent){
+            element.attachEvent("on"+type, fn);
+        }else {
+            element["on"+type] = fn;
+        }
+    }
+    addEventListener(my$("btn"),"click",function () {
+        console.log("11111");
+    })
+    addEventListener(my$("btn"),"click",function () {
+        console.log("22222");
+    })
+    addEventListener(my$("btn"),"click",function () {
+        console.log("33333");
+    })
+</script>
+</body>
+</html>

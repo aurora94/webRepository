@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn" />
+    <input type="button" value="解绑第一个按钮的事件" id="btn2" />
+
+    <script src="common.js"></script>
+    <script>
+        /*
+        * 解绑事件：
+        * 注意：用什么方式绑定事件，就应该用对应的方式解绑事件，成对使用
+        * 方法1：
+        * 对象.on事件名字=事件处理函数————绑定事件
+        * 对象.on事件名字 = null;
+        *
+        * 方法2：————谷歌、火狐支持、IE8不支持
+        * 对象.addEventListener("没有on的事件类型"，命名函数， false)————绑定事件
+        * 对象.removeEventListener("没有on的事件类型"，命名函数， false)————解绑事件
+        *
+        * 方法3：————IE8支持，谷歌火狐不支持
+        * 对象.attachEvent("on事件类型"，命名函数)————绑定事件
+        * 对象.detachEvent("on事件类型"，命名函数)————解绑事件
+        *
+        * */
+
+        //3.需绑定事件函数为命名函数
+        function f1() {
+            console.log("事件1");
+        }
+
+        function f2() {
+            console.log("事件2");
+        }
+        my$("btn").attachEvent("onclick", f1);
+        my$("btn").attachEvent("onclick", f2);
+        my$("btn2").onclick = function () {
+            my$("btn").detachEvent("onclick", f1);
+        };
+
+
+        // 2. 方法二需要绑定事件函数为命名函数
+        /*my$("btn").addEventListener("click",function() {
+            console.log("事件1");
+        }, false);
+        my$("btn").addEventListener("click",function() {
+            console.log("事件2");
+        }, false);
+
+        //点击第二个按钮，把第一个按钮的第一个点击事件解绑
+        my$("btn2").onclick = function () {
+            // 解绑不成功，需要在绑定事件时，使用命名函数
+            my$("btn").removeEventListener("click", function() {
+                console.log("事件1");
+            }, false);
+        };*/
+
+        /*function f1() {
+            console.log("事件1");
+        }
+
+        function f2() {
+            console.log("事件2");
+        }
+
+        my$("btn").addEventListener("click", f1, false);
+        my$("btn").addEventListener("click", f2, false);
+
+        //点击第二个按钮，把第一个按钮的第一个点击事件解绑
+        my$("btn2").onclick = function () {
+            // 解绑不成功，需要在绑定事件时，使用命名函数
+            my$("btn").removeEventListener("click", f1, false);
+        };*/
+
+
+        /*//1. 对象.on事件名字=事件处理函数————绑定事件
+        my$("btn").onclick = function() {
+            console.log("点了按钮");
+        };
+        my$("btn2").onclick = function() {
+            //1. 解绑事件
+            my$("btn").onclick = null;
+        };*/
+    </script>
+</body>
+</html>

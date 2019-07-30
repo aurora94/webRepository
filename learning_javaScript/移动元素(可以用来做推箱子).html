@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        input {
+            margin-top: 10px;
+        }
+        div {
+            margin-top: 30px;
+            width: 200px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="移动到400" id="btn1" />
+    <input type="button" value="移动到800" id="btn2" />
+    <div id="dv"></div>
+    <script src="common.js"></script>
+    <script>
+        //div要移动，要脱离文档流————position:absolute;
+        //如果样式的代码是在style标签中设置，外面获取不到————使用offsetLeft
+        //如果样式代码是在style属性中设置，外面可以获取
+
+        my$("btn1").onclick = function () {
+            animate(my$("dv"), 400);
+        };
+        my$("btn2").onclick = function () {
+            animate(my$("dv"), 800);
+        };
+
+        /*
+        *
+        * 动画函数————任意一个元素移动到指定的目标位置
+        *
+        * */
+        function animate(element, target) {
+            //清理定时器，只产生一个定时器
+            //先清理定时器
+            clearInterval(element.timeId);
+            //获取div当前位置
+            var position = element.offsetLeft;
+            //div每次移动的步长
+            var step = 9;
+            step = (position < target) ? step : -step;
+            element.timeId = setInterval(function () {
+                //如果当前位置小于目标，加步长
+                //设置目标位置
+                position+=step;
+                //判断当前移动后的位置是否达到目标位置
+                if (Math.abs(target-position) > Math.abs(step)) {
+                    element.style.left = position + "px";
+                } else {
+                    clearInterval(element.timeId);
+                    element.style.left = target + "px";
+                }
+
+            }, 20);
+
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--<ul>
+        <li score="10">小王</li>
+        <li score="30">小明</li>
+        <li score="40">小红</li>
+    </ul>-->
+
+    <!--设置自定义属性-->
+    <ul>
+        <li>小王</li>
+        <li>小红</li>
+        <li>小明</li>
+    </ul>
+    <script>
+
+        //添加自定义属性
+        var list = document.getElementsByTagName("li");
+        for(var i = 0; i < list.length; i++) {
+            //先为每个li添加score属性
+            list[i].setAttribute("score", (i+1)*10);
+            list[i].onclick = function() {
+                alert(this.getAttribute("score"));
+            };
+        }
+        /*for(var i = 0; i < list.length; i++) {
+            list[i].onclick = function() {
+                alert(this.getAttribute("score"));
+            };
+        }*/
+    </script>
+</body>
+</html>

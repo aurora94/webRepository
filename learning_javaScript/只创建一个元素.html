@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 150px;
+            border: 2px dashed pink;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="只创建一个按钮" id="btn1" />
+    <div id="dv"></div>
+
+    <script src="common.js"></script>
+    <script>
+        //有则删除，无则创建
+
+        /*my$("btn1").onclick = function () {
+            //判断div中有没有这个按钮，有就删除
+            if(my$("btn2")) {
+                my$("dv").removeChild(my$("btn2"));
+            }
+
+            //创建元素
+            var pObj = document.createElement("input");
+            pObj.type = "button";
+            pObj.value = "按钮";
+            pObj.id = "btn2";
+            //把创建好的子元素追加到父级元素中
+            my$("dv").appendChild(pObj);  //点击一次按钮追加一个p
+
+        };*/
+        //只创建一次
+        my$("btn1").onclick = function () {
+            //判断div中有没有这个按钮，有就删除
+            if(!my$("btn2")) {
+                //创建元素
+                var pObj = document.createElement("input");
+                pObj.type = "button";
+                pObj.value = "按钮";
+                pObj.id = "btn2";
+                //把创建好的子元素追加到父级元素中
+                my$("dv").appendChild(pObj);  //点击一次按钮追加一个p
+
+            }
+
+
+        };
+    </script>
+</body>
+</html>

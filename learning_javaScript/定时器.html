@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" value="停止" id="btn" />
+    <script src="common.js"></script>
+    <script>
+        // BOM中有两个定时器————计时器
+
+        // 定时器1 window.setTimeInterval(函数，时间)————循环重复
+        // 参数1：函数
+        // 参数2：时间————毫秒————1000毫秒=1秒
+        // 执行过程：页面加载完毕后，过了1秒，执行一次函数代码，又过了一秒在执行函数......
+        // 返回值：定时器的id值
+        /*var timeId = setInterval(function() {
+            alert("Hello");
+        }, 3000);
+        // 清理定时器
+        my$("btn").onclick = function () {
+            window.clearInterval(timeId);
+        };*/
+
+        //定时器2————window.setTimeOut(函数，时间)————一次性的定时
+        /*
+        *
+        * 参数1：函数
+        * 参数2：时间————1000毫秒=1秒
+        *
+        * */
+        var timeId = setTimeout(function(){
+            alert("hello");
+        }, 3000);
+        // 点击按钮，停止这个一次性的定时器，不清理 定时器不再使用 但也会占用空间
+        my$("btn").onclick = function() {
+            clearTimeout(timeId);
+        };
+
+    </script>
+</body>
+</html>

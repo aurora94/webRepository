@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #dv1 {
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+        }
+        #dv2 {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+        #dv3 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3"></div>
+        </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+
+        /*
+        *
+        * 阻止事件冒泡
+        * window.event.cancelBubble = true; ————IE特有，谷歌支持，火狐不支持
+        * e.stopPropagation();————谷歌，火狐支持，IE8中不支持e（undefined）
+        *
+        * */
+        my$("dv1").onclick = function () {
+            console.log(this.id);
+        }
+        my$("dv2").onclick = function (e) {
+            console.log(this.id);
+            e.stopPropagation();
+        }
+
+        //事件处理参数对象
+        my$("dv3").onclick = function () {
+            console.log(this.id);
+            window.event.cancelBubble = true;
+        }
+    </script>
+</body>
+</html>

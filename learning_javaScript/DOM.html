@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<input type="button" value="show" id="btn"/>
+<p id="p"></p>-->
+
+<!--禁用文本框-->
+<input type="button" value="禁用文本框" id="btn" />
+<input type="text" value="文本框" id="txt" />
+<ul id="phone">
+    <li>苹果</li>
+    <li>华为</li>
+    <li>三星</li>
+    <li>小米</li>
+</ul>
+<input type="button" value="变色" id="btn2" />
+</br>
+
+<!--阻止超链接跳转-->
+<a href="www.baidu.com" onclick="alert('哎呀，点我了，但我不跳转'); return false;">百度（方法1）</a>
+<a href="www.baidu.com" onclick="return f1()">百度（方法2）</a>
+<a href="www.baidu.com" id="ak">百度（方法3）</a>
+<script>
+    /*document.getElementById('btn').onclick = function(){
+        alert("我弹出来啦！");
+    };*/
+
+    /*document.getElementById("btn").onclick = function () {
+        document.getElementById("p").innerText = "Hello";
+    };
+*/
+    /*
+   *
+   * 禁用文本框
+   *
+   * */
+    var btn = document.getElementById("btn");
+    var txt = document.getElementById("txt");
+    if(btn.value == "禁用文本框"){
+        btn.onclick = function() {
+            txt.disabled = true;
+            btn.value = "开启文本框";
+        };
+    }
+
+    /*
+    *
+    * 变色
+    *
+    * */
+    document.getElementById("btn2").onclick = function() {
+        document.getElementById("phone").style.backgroundColor = "pink";
+    };
+
+    /*
+    *
+    * 阻止超链接跳转
+    *
+    * */
+    function f1() {
+        alert("第二种方法，不跳转");
+        return false;
+    };
+
+    document.getElementById("ak").onclick = function () {
+        alert("第三种方法，不跳转");
+        return false;
+    };
+
+</script>
+</body>
+</html>

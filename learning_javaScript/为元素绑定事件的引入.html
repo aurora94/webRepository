@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn" />
+    <script src="common.js"></script>
+    <script>
+        //为元素绑定事件（DOM）
+
+        //方式一：对象.addEventListener("事件类型"，事件处理函数，false);  谷歌、火狐支持，IE8不支持
+        //为按钮绑定点击事件
+        //参数1：事件的类型————事件的名字，没有on————click，mouseover
+        //参数2：事件处理函数————函数（命名函数，匿名函数）
+        //参数3：boolean，目前就写false————暂不解释
+        my$("btn").addEventListener("click", function () {
+            console.log("111111");
+        }, false);
+        my$("btn").addEventListener("click", function () {
+            console.log("222222");
+        }, false);
+        my$("btn").addEventListener("click", function () {
+            console.log("333333");
+        }, false);
+        my$("btn").addEventListener("click", function () {
+            console.log("444444");
+        }, false);
+
+        //方式二：对象.attachEvent("有on的事件类型"，事件处理函数)————谷歌、火狐不支持，IE8支持
+        //参数1：事件类型————事件名字，有on
+        //参数2：事件处理函数————函数（命名函数、匿名函数）
+        my$("btn").attachEvent("onclick", function () {
+            console.log("444444");
+        });
+    </script>
+</body>
+</html>

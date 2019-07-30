@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 150px;
+            border: 2px dashed pink;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="在前端插入新按钮" id="btn1" />
+    <input type="button" value="移除第一个子元素" id="btn2" />
+    <input type="button" value="移除所有子元素" id="btn3" />
+    <div id="dv"></div>
+
+    <script src="common.js"></script>
+    <script>
+        //第三种方式创建元素
+        //1.创建元素；2.把元素追加到父级元素中；
+        //点击按钮在div中创建一个p
+        var num = 0;
+        my$("btn1").onclick = function () {
+            //创建元素
+            var pObj = document.createElement("input");
+            num += 1;
+            pObj.type = "button";
+            pObj.value = "按钮" + num;
+            // setInnerText(pObj, "这是一个p");
+            //把创建好的子元素追加到父级元素中
+            // my$("dv").appendChild(pObj);  //点击一次按钮追加一个p
+
+            my$("dv").insertBefore(pObj, my$("dv").firstElementChild);  //把新的元素插入到第一个子元素的前面
+            // my$("dv").replaceChild(pObj, my$("dv").firstElementChild);  //用新的元素替换父级元素中的第一个子级元素
+
+        };
+
+        my$("btn2").onclick = function () {
+            my$("dv").removeChild(my$("dv").firstElementChild);  //移除父级元素中的第一个子级元素
+
+        };
+        my$("btn3").onclick = function () {
+            //删除父级元素中的所有子级元素
+            //先判断父级元素中有没有第一个子元素
+            while(my$("dv").firstElementChild) {
+                my$("dv").removeChild(my$("dv").firstElementChild);
+            }
+        }
+
+
+    </script>
+</body>
+</html>
